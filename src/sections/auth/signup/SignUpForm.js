@@ -10,10 +10,12 @@ import { LoadingButton } from '@mui/lab';
 import { Box } from '@mui/system';
 import { City } from 'country-state-city';
 // components
+import { CometChat } from '@cometchat-pro/chat';
 import AuthServices from '../../../services/AuthServices';
 import cometServices from '../../../services/cometServices'
 import Iconify from '../../../components/iconify';
 import { auth, db, storage } from '../../../firebase/firebase';
+import { COMETCHAT_CONSTANTS } from './../../cometchat-pro-react-ui-kit/CometChatWorkspace/src/resources/__mocks__/consts';
 // ----------------------------------------------------------------------
 
 export default function SignUpForm() {
@@ -41,8 +43,21 @@ export default function SignUpForm() {
   console.log(json)
 
   const handleClick = async () => {
-    await cometServices.signUp({ "uid": `${json.email.split('@')[0]}`, "name": `${json.name}`, "avatar": `${json.image}`, "Link": "", "role": "Default", "metadata": "None", "withAuthToken": true, "tags": [] })
-      .then((res) => { console.log(res) })
+    // await cometServices.signUp({ "uid": `${json.email.split('@')[0]}`, "name": `${json.name}`, "avatar": `${json.image}`, "Link": "", "role": "Default", "metadata": "None", "withAuthToken": true, "tags": [] })
+    //   .then((res) => { console.log(res) })
+    let authKey = COMETCHAT_CONSTANTS.AUTH_KEY;
+    var uid = `${json.email.split('@')[0]}`;
+    var name = `${json.name}`;
+
+    var user = new CometChat.User(uid);
+    user.setName(name);
+    CometChat.createUser(user, authKey).then(
+      user => {
+        console.log("user created", user);
+      }, error => {
+        console.log("error", error);
+      }
+    )
     await AuthServices.signUp({ ...json, uid: `${json.email.split('@')[0]}` }).then((res) => {
       console.log(res.data.token, res.data.user)
       localStorage.setItem('token', res.data.token)

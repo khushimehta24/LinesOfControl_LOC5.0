@@ -3,9 +3,11 @@ import { useNavigate } from 'react-router-dom';
 // @mui
 import { Link, Stack, IconButton, InputAdornment, TextField, Checkbox, FormControlLabel } from '@mui/material';
 import { LoadingButton } from '@mui/lab';
+import { CometChat } from '@cometchat-pro/chat';
 // components
 import Iconify from '../../../components/iconify';
 import AuthServices from '../../../services/AuthServices';
+import { COMETCHAT_CONSTANTS } from './../../cometchat-pro-react-ui-kit/CometChatWorkspace/src/resources/__mocks__/consts';
 
 // ----------------------------------------------------------------------
 
@@ -24,6 +26,17 @@ export default function LoginForm() {
     setJson({ ...json, [name]: value });
   }
   const handleClick = async () => {
+    const authKey = COMETCHAT_CONSTANTS.AUTH_KEY;
+    const uid = `${json.email.split('@')[0]}`;
+
+    CometChat.login(uid, authKey).then(
+      user => {
+        console.log("Login Successful:", { user });
+      },
+      error => {
+        console.log("Login failed with exception:", { error });
+      }
+    );
     await AuthServices.login(json).then((res) => {
       console.log(res.data.token, res.data.user)
       localStorage.setItem('token', res.data.token)
