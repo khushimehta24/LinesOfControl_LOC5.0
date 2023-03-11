@@ -49,7 +49,7 @@ const Calendar = () => {
             <Grid container spacing={2}>
                 <Grid xs={12} md={4}>
                     <Box
-                        backgroundColor={'white'}
+                        backgroundColor={'#EDEDED'}
                         p="15px"
                         borderRadius="4px"
                     >
@@ -59,7 +59,7 @@ const Calendar = () => {
                                 <ListItem
                                     key={event.id}
                                     sx={{
-                                        backgroundColor: 'white',
+                                        backgroundColor: '#EDEDED',
                                         margin: "10px 0",
                                         borderRadius: "2px",
                                     }}

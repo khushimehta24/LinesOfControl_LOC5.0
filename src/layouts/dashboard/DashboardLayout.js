@@ -42,7 +42,7 @@ export default function DashboardLayout() {
 
       <Nav openNav={open} onCloseNav={() => setOpen(false)} />
 
-      <Main sx={{ backgroundColor: 'white', '& .css-1oqqzyl-MuiContainer-root': { maxWidth: '100%' }, "&::-webkit-scrollbar": { display: 'none' }, borderRadius: '20px', height: '96vh', overflowY: 'scroll' }}>
+      <Main sx={{ backgroundColor: '#EDEDED', '& .css-1oqqzyl-MuiContainer-root': { maxWidth: '100%' }, "&::-webkit-scrollbar": { display: 'none' }, borderRadius: '20px', height: '96vh', overflowY: 'scroll' }}>
         <Outlet sx={{ width: '100%' }} />
       </Main>
     </StyledRoot>

@@ -50,7 +50,7 @@ export default function LoginPage() {
         <title> Login | LensFolio </title>
       </Helmet>
 
-      <StyledRoot sx={{ bgcolor: 'white' }}>
+      <StyledRoot sx={{ bgcolor: '#EDEDED' }}>
         <Logo
           sx={{
             position: 'fixed',

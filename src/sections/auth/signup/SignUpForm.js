@@ -135,7 +135,7 @@ export default function SignUpForm() {
       {!load ? <LoadingButton onClick={handleClick} sx={{ backgroundColor: "#4060F3" }} fullWidth size="large" type="submit" variant="contained">
         Sign Up
       </LoadingButton> : <Box sx={{ display: 'flex', justifyContent: 'center' }}>
-        <CircularProgress sx={{ backgroundColor: '#4060F3', color: 'white', padding: '5px', borderRadius: '50%' }} />
+        <CircularProgress sx={{ backgroundColor: '#4060F3', color: '#EDEDED', padding: '5px', borderRadius: '50%' }} />
       </Box>}
     </>
   );
