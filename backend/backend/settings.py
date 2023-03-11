@@ -147,9 +147,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
 STATIC_URL = 'static/'
-STATIC_ROOT = BASE_DIR / 'static/'
+STATIC_ROOT = '/home/locbackend/locbackend.pythonanywhere.com/static/'
 MEDIA_URL = 'media/'
-MEDIA_ROOT = BASE_DIR / 'media/'
+MEDIA_ROOT = '/home/locbackend/locbackend.pythonanywhere.com/media/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
@@ -161,4 +161,4 @@ EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_HOST_USER = 'testsender1507@gmail.com'
-EMAIL_HOST_PASSWORD = 'pratham55'
+EMAIL_HOST_PASSWORD = 'zrvzrvldsawnirfj'
