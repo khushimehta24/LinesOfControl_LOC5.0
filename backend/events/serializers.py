@@ -1,8 +1,10 @@
 from rest_framework import serializers
 from .models import *
+from accounts.models import *
+from accounts.serializers import *
 
 class GroupEventSerializer(serializers.ModelSerializer):
-
+    creator = UserSerializer()
     class Meta:
         model = GroupEvent
         fields = '__all__'

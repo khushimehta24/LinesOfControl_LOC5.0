@@ -22,4 +22,9 @@ def all_products_user(request):
     serializer = ProductSerializer(event_objs,many=True)
     return Response({'status':200, 'all products of a user': serializer.data})
 
-
+#all events of an ngo
+@api_view(['GET'])
+def search_product(request):
+    event_objs = Product.objects.filter(creator=request.user)
+    serializer = ProductSerializer(event_objs,many=True)
+    return Response({'status':200, 'all products of a user': serializer.data})
