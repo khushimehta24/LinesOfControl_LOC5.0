@@ -8,6 +8,7 @@ import { CometChat } from '@cometchat-pro/chat';
 import Iconify from '../../../components/iconify';
 import AuthServices from '../../../services/AuthServices';
 import { COMETCHAT_CONSTANTS } from './../../cometchat-pro-react-ui-kit/CometChatWorkspace/src/resources/__mocks__/consts';
+import  axios  from 'axios';
 
 // ----------------------------------------------------------------------
 
