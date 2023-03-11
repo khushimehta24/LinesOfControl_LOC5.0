@@ -44,7 +44,7 @@ class LoginSerializer(serializers.ModelSerializer):
 
 class UserSerializer(serializers.ModelSerializer):
     password= serializers.CharField(max_length = 16, min_length = 8, write_only=True)
-    uid = serializers.IntegerField(read_only=True)
+    uid = serializers.CharField(read_only=True)
     class Meta:
         model = User
         fields = ['id', 'uid', 'name', 'email','phone_no', 'password', 'city', 'image', 'likes', 'is_client']

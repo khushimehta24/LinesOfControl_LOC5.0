@@ -4,13 +4,13 @@ from .models import *
 # Register your models here.
 class FollowAdmin(admin.ModelAdmin):
     model = Follow
-    list_display = ['follower', 'main_user']
-    list_filter = ['follower', 'main_user']
+    list_display = ['id','follower', 'main_user']
+    list_filter = ['id','follower', 'main_user']
 
-class NotificationAdmin(admin.ModelAdmin):
-    model = Notification
-    list_display = ['user', 'message']
-    list_filter = ['user', 'message']
+# class NotificationAdmin(admin.ModelAdmin):
+#     model = Notification
+#     list_display = ['id','user', 'message']
+#     list_filter = ['id','user', 'message']
 
 admin.site.register(Follow, FollowAdmin)
-admin.site.register(Notification, NotificationAdmin)
+# admin.site.register(Notification, NotificationAdmin)
