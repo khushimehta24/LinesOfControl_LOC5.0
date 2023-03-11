@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import { NavLink as RouterLink } from 'react-router-dom';
 // @mui
-import { Box, List, ListItemText } from '@mui/material';
+import { Box, List, ListItemText, Tooltip } from '@mui/material';
 //
 import { StyledNavItem, StyledNavItemIcon } from './styles';
 
@@ -33,6 +33,7 @@ function NavItem({ item }) {
   const { title, path, icon, info } = item;
 
   return (
+
     <StyledNavItem
       component={RouterLink}
       to={path}
@@ -44,7 +45,9 @@ function NavItem({ item }) {
         },
       }}
     >
-      {icon && icon}
+      <Tooltip title={title}>
+        {icon && icon}
+      </Tooltip>
     </StyledNavItem>
   );
 }
