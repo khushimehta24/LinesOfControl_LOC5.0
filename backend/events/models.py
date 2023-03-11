@@ -13,6 +13,7 @@ class GroupEvent(models.Model):
     venue = models.CharField(max_length=200)
     desc = models.TextField(max_length=300)
     creator = models.ForeignKey(User, on_delete=models.CASCADE)
+    img = models.URLField(max_length=200)
 
     def __str__(self):
         return self.name
