@@ -58,14 +58,14 @@ class OnRegisterAPI(GenericAPIView):
         request.data.update({'event_name': event_name, 'user_name': user_name})
         data = request.data
         serializer = RegisterSerializer(data = request.data)
-        print(request.data)
         if not serializer.is_valid():
             return Response({'status':403,'message': "something went wrong"})
         serializer.create(request.data)
         event_obj = GroupEvent.objects.get(id=pk)
         serializer = GroupEventSerializer(event_obj)
-        send_event_mail(serializer.data, request.user, 'not creator')
-        send_event_mail(serializer.data, request.user, 'creator', serializer.data['creator'])        
+        creator = User.objects.get(id=serializer.data['creator'])
+        send_event_mail(serializer.data, request.user, 'not creator', creator.name)
+        send_event_mail(serializer.data, request.user, 'creator', creator.name)        
         return Response({'status':200, 'payload': serializer.data,'message': "Data entered"})    
 
 @api_view(['GET'])
