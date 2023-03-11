@@ -43,7 +43,7 @@ export default function SignUpPage() {
     return (
         <>
 
-            <StyledRoot>
+            <StyledRoot sx={{ bgcolor: 'white' }}>
 
 
                 {mdUp && (
