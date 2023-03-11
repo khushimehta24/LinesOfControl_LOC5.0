@@ -70,7 +70,7 @@ function Event() {
                     <Grid item md={12} xs={12}>
                         <p style={{ fontSize: '12px' }}>Description</p>
                         <TextField required value={json.desc} sx={textField} type="text" name='desc' id='desc' multiline rows={4} onChange={handleChange} />
-                        <Button sx={{ width: '100%', bgcolor: 'black', color: 'white', marginTop: '5%' }} >Register</Button>
+                        <Button sx={{ width: '100%', bgcolor: 'black', color: 'white', marginTop: '3%' }} >Register</Button>
                     </Grid>
                 </Grid>
             </Grid>
