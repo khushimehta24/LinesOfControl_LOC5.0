@@ -1,0 +1,14 @@
+*.pyc
+_pycache_/
+db.sqlite3
+
+# Environments
+virtualenv/
+*.env
+env/
+venv/
+ENV/
+# VS Code settings
+media/
+.ipynb_checkpoints/
+*.json
