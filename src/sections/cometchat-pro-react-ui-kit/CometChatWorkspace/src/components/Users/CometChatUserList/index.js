@@ -218,11 +218,11 @@ class CometChatUserList extends React.PureComponent {
 			"method": "GET",
 			"url": "https://234738ca9e8cf860.api-eu.cometchat.io/v3/users",
 			"headers": {
-			  "apiKey": "7765f6f7e67c3a9296b781ebcee9de96ea00b5a0",
-			  "Content-Type": "application/json"
+				"apiKey": "7765f6f7e67c3a9296b781ebcee9de96ea00b5a0",
+				"Content-Type": "application/json"
 			}
-		  }
-		  axios(config)
+		}
+		axios(config)
 			.then((res) => {
 				if (res.data.data === 0) {
 					if (res.data.data === 0) {
@@ -236,7 +236,7 @@ class CometChatUserList extends React.PureComponent {
 				} else {
 					console.log(res.data.data)
 					let chat = ['harsh0989']
-					let temp = res.data.data.filter((id) =>  chat.indexOf(id.uid) !== -1 )
+					let temp = res.data.data.filter((id) => chat.indexOf(id.uid) !== -1)
 					console.log(temp)
 					this.setState({
 						userlist: [...temp],
@@ -296,7 +296,7 @@ class CometChatUserList extends React.PureComponent {
 
 			let selectedUser =
 				this.getContext().type === CometChat.ACTION_TYPE.TYPE_USER &&
-				this.getContext().item.uid === user.uid
+					this.getContext().item.uid === user.uid
 					? user
 					: null;
 
@@ -387,7 +387,7 @@ class CometChatUserList extends React.PureComponent {
 CometChatUserList.defaultProps = {
 	lang: Translator.getDefaultLanguage(),
 	theme: theme,
-	onItemClick: () => {},
+	onItemClick: () => { },
 	_parent: "",
 };
 

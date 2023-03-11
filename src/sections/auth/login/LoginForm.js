@@ -6,6 +6,8 @@ import { LoadingButton } from '@mui/lab';
 // components
 import Iconify from '../../../components/iconify';
 import AuthServices from '../../../services/AuthServices';
+import { CometChat } from '@cometchat-pro/chat';
+import axios from 'axios';
 
 // ----------------------------------------------------------------------
 
@@ -27,10 +29,38 @@ export default function LoginForm() {
     await AuthServices.login(json).then((res) => {
       console.log(res.data.token, res.data.user)
       localStorage.setItem('token', res.data.token)
+      CometChat.login(json.email.split('@')[0], "7ce021dc74b204685fed46ac21090eb0547e8d6c").then(
+        (user) => {
+          console.log("Login Successful:", { user });
+        },
+        (error) => {
+          console.log("Login failed with exception:", { error });
+        }
+      );
+      fetchusers()
       localStorage.setItem('lfuser', JSON.stringify(res.data.user))
       navigate('/dashboard/app')
     })
   };
+
+  const fetchusers = () => {
+    var config = {
+      "method": "GET",
+      "url": "https://234738ca9e8cf860.api-eu.cometchat.io/v3/users",
+      "headers": {
+        "apiKey": "7765f6f7e67c3a9296b781ebcee9de96ea00b5a0",
+        "Content-Type": "application/json"
+      }
+    }
+    axios(config)
+      .then(function (response) {
+        console.log(response.data.data)
+
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }
 
   return (
     <>

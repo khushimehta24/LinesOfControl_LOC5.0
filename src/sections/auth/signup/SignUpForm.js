@@ -41,13 +41,13 @@ export default function SignUpForm() {
   console.log(json)
 
   const handleClick = async () => {
-    await cometServices.signUp({ "uid": `${json.email.split('@')[0]}`, "name": `${json.name}`, "avatar": `${json.image}`, "Link": "", "role": "Default", "metadata": "None", "withAuthToken": true, "tags": [] })
-      .then((res) => { console.log(res) })
-    await AuthServices.signUp({ ...json, uid: `${json.email.split('@')[0]}` }).then((res) => {
+    await AuthServices.signUp({ ...json, uid: `${json.email.split('@')[0]}` }).then(async (res) => {
       console.log(res.data.token, res.data.user)
       localStorage.setItem('token', res.data.token)
       localStorage.setItem('lfuser', JSON.stringify(res.data.user))
       navigate('/dashboard/app')
+      await cometServices.signUp({ "uid": `${json.email.split('@')[0]}`, "name": `${json.name}`, "avatar": `${json.image}`, "Link": "", "role": "Default", "metadata": "None", "withAuthToken": true, "tags": [] })
+        .then((res) => { console.log(res) })
     })
   };
   // console.log(imgUpload)
