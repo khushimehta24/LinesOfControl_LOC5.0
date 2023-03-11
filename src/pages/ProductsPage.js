@@ -1,17 +1,26 @@
 import { Helmet } from 'react-helmet-async';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 // @mui
 import { Container, Stack, Typography } from '@mui/material';
 // components
 import { ProductSort, ProductList, ProductCartWidget, ProductFilterSidebar } from '../sections/@dashboard/products';
 // mock
 import PRODUCTS from '../_mock/products';
+import FetchService from 'src/services/FetchService';
+import { async } from '@firebase/util';
 
 // ----------------------------------------------------------------------
 
 export default function ProductsPage() {
   const [openFilter, setOpenFilter] = useState(false);
-
+  const [events, setEvents] = useState([])
+  useEffect(() => {
+    const func=async()=>{await FetchService.getEvent().then((res) => {
+      setEvents(res.data.all_events)
+    })}
+    func()
+  }, [])
+  console.log(events)
   const handleOpenFilter = () => {
     setOpenFilter(true);
   };
@@ -42,7 +51,7 @@ export default function ProductsPage() {
           </Stack>
         </Stack>
 
-        <ProductList products={PRODUCTS} />
+        <ProductList products={events} />
         <ProductCartWidget />
       </Container>
     </>
