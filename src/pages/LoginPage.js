@@ -49,7 +49,7 @@ export default function LoginPage() {
         <title> Login | Minimal UI </title>
       </Helmet>
 
-      <StyledRoot sx={{ bgcolor: 'white' }}>
+      <StyledRoot sx={{ bgcolor: '#EDEDED' }}>
         <Logo
           sx={{
             position: 'fixed',

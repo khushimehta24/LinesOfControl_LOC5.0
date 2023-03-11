@@ -21,7 +21,7 @@ const HEADER_MOBILE = 64;
 const HEADER_DESKTOP = 70;
 
 const StyledRoot = styled(AppBar)(({ theme }) => ({
-  backgroundColor: 'white',
+  backgroundColor: '#EDEDED',
   boxShadow: 'none',
   [theme.breakpoints.up('lg')]: {
     width: `calc(100% - ${NAV_WIDTH + 1}px)`,
@@ -32,7 +32,6 @@ const StyledToolbar = styled(Toolbar)(({ theme }) => ({
   minHeight: HEADER_MOBILE,
   [theme.breakpoints.up('lg')]: {
     minHeight: HEADER_DESKTOP,
-    padding: theme.spacing(0, 5),
   },
 }));
 
