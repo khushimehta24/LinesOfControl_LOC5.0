@@ -64,4 +64,4 @@ class UserGetAPI(GenericAPIView):
 class UserListAPI(ListAPIView):
     serializer_class = UserSerializer
     permission_classes = [permissions.IsAuthenticated]
-    queryset = User.objects.exclude(is_superuser = True)
+    queryset = User.objects.exclude(is_superuser = True).order_by('-engagement')

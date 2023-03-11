@@ -1,6 +1,7 @@
 from rest_framework import serializers
 from .models import *
 import re
+from portfolio.serializers import *
 
 from rest_framework.exceptions import ValidationError
 
@@ -14,7 +15,7 @@ class UserRegisterSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ['id','uid', 'name', 'email', 'password','confirm_password','phone_no', 'city', 'image', 'likes', 'followers', 'following', 'is_client']
+        fields = ['id','uid', 'name', 'email', 'password','confirm_password','phone_no', 'city', 'image', 'likes', 'followers', 'following', 'is_client', 'engagement']
 
     # To validate data received
     def validate(self, attrs):
@@ -49,15 +50,15 @@ class LoginSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ['id', 'uid', 'name', 'email','phone_no', 'password', 'city', 'image', 'likes', 'followers', 'following', 'is_client']
+        fields = ['id', 'uid', 'name', 'email','phone_no', 'password', 'city', 'image', 'likes', 'followers', 'following', 'is_client', 'engagement']
 
 class UserSerializer(serializers.ModelSerializer):
+    photos = PhotographSerializer(source ='user', many=True)
     password= serializers.CharField(max_length = 16, min_length = 8, write_only=True)
     uid = serializers.CharField(read_only=True)
     class Meta:
         model = User
-        fields = ['id', 'uid', 'name', 'email','phone_no', 'password', 'city', 'image', 'likes', 'followers', 'following', 'is_client']
-
+        fields = ['id', 'uid', 'name', 'email','phone_no', 'password', 'city', 'image', 'likes', 'followers', 'following', 'is_client', 'engagement', 'photos']
     # To update user
     def update(self,validated_data,instance):
         instance.name = validated_data['name'] 

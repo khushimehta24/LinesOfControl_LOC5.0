@@ -15,6 +15,7 @@ class FollowSerializer(serializers.ModelSerializer):
         follow = Follow.objects.create(follower = user, main_user = data['main_user'])
         main_user = data['main_user']
         main_user.followers +=1
+        main_user.engagement +=1
         user.following +=1
         follow.save()
         main_user.save()
@@ -45,6 +46,7 @@ class LikeSerializer(serializers.ModelSerializer):
         user2 = User.objects.get(id = id)
         like = Like.objects.create(liked_by = user, liked_to = user2)
         user2.likes +=1
+        user2.engagement +=1
         user2.save()
         return like, user2
 

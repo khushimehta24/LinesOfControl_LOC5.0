@@ -49,6 +49,7 @@ class User(AbstractUser):
     likes = models.IntegerField(blank=True, default=0)
     followers = models.IntegerField(blank=True, default=0)
     following = models.IntegerField(blank=True, default=0)
+    engagement = models.IntegerField(blank=True, default=0)
     is_client = models.BooleanField(blank=True, default=False)
 
     USERNAME_FIELD = 'email'
