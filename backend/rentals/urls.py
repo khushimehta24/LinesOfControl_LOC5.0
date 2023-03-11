@@ -2,11 +2,10 @@ from django.contrib import admin
 from django.urls import path, include
 from .views import *
 
-# urlpatterns = [
-#  path('get_all_events/',get_all_events),
-#  path('create_event/', create_event),
-#  path('all_events_user/', all_events_user),
-#  path('<int:pk>/open_event/', open_event),
-#  path('on_register/', OnRegisterAPI.as_view()),
-#  path('on_register_get/', on_register_get),
-# ]
+urlpatterns = [
+ path('get_all_products/',get_all_products),
+ path('<int:pk>/all_products_user/', all_products_user),
+ path('search_product/', SearchRentalAPI.as_view()),
+ path('<int:pk>/open_product/', open_product),
+ path('create_rental/', CreateRentalAPI.as_view()),
+]

@@ -31,8 +31,8 @@ def create_event(request):
 
 #all events of an ngo
 @api_view(['GET'])
-def all_events_user(request):
-    event_objs = GroupEvent.objects.filter(creator=request.user)
+def all_events_user(request,pk):
+    event_objs = GroupEvent.objects.filter(creator=pk)
     serializer = GroupEventSerializer(event_objs,many=True)
     return Response({'status':200, 'all_events_user': serializer.data})
 
