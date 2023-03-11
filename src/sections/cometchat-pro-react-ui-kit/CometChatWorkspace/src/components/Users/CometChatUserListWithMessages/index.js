@@ -29,7 +29,7 @@ class CometChatUserListWithMessages extends React.Component {
 		this.state = {
 			sidebarview: false,
 		};
-		console.log(props)
+
 		this.contextProviderRef = React.createRef();
 	}
 

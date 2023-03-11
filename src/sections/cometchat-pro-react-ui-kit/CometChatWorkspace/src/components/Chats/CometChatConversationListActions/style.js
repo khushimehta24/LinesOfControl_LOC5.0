@@ -1,4 +1,3 @@
-/* eslint-disable */
 export const conversationActionStyle = (context) => {
 	return {
 		display: "flex",

@@ -1,4 +1,3 @@
-/* eslint-disable */
 export const blockedMessageWrapperStyle = () => {
 	return {
 		padding: "16px",

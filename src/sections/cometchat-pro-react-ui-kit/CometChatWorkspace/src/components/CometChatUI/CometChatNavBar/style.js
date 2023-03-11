@@ -1,4 +1,3 @@
-/* eslint-disable */
 export const footerStyle = () => {
 	return {
 		width: "100%",

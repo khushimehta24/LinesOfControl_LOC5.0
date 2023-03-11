@@ -1,5 +1,5 @@
 import { CometChat } from "@cometchat-pro/chat";
-/* eslint-disable */
+
 import * as enums from "../../../util/enums.js";
 
 export class CallScreenManager {

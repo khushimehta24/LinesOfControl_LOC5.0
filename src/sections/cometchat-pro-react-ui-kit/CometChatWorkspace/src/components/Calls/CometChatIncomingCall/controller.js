@@ -1,7 +1,7 @@
 import { CometChat } from "@cometchat-pro/chat";
 
-/* eslint-disable */
 import * as enums from "../../../util/enums.js";
+
 export class CallAlertManager {
 	callListenerId = "incoming_call_" + new Date().getTime();
 

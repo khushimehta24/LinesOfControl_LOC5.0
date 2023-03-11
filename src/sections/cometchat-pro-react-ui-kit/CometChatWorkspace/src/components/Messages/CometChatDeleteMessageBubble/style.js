@@ -1,5 +1,4 @@
 import { CometChat } from "@cometchat-pro/chat";
-/* eslint-disable */
 
 export const messageContainerStyle = (props, loggedInUser) => {
 	const alignment =

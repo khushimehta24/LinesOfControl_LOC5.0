@@ -1,4 +1,3 @@
-/* eslint-disable */
 export const groupWrapperStyle = (props, theme) => {
 	const borderStyle =
 		props._parent === ""

@@ -1,7 +1,6 @@
 import React from "react";
 /** @jsxRuntime classic */
 /** @jsx jsx */
-/* eslint-disable */
 import { jsx } from "@emotion/react";
 import PropTypes from "prop-types";
 

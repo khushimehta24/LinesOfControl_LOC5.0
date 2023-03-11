@@ -1,4 +1,3 @@
-/* eslint-disable */
 export const groupScreenStyle = (props) => {
 	return {
 		display: "flex",

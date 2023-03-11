@@ -1,4 +1,3 @@
-/* eslint-disable */
 export const unifiedStyle = (props) => {
 	return {
 		display: "flex",

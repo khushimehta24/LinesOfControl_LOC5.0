@@ -1,4 +1,3 @@
-/* eslint-disable */
 export const callScreenWrapperStyle = (props, keyframes) => {
 	let styles = {
 		width: "100%",

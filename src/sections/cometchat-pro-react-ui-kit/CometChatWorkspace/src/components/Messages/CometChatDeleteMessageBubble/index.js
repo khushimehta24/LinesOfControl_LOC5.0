@@ -2,7 +2,6 @@ import React, { useContext, useState, useEffect } from "react";
 import dateFormat from "dateformat";
 /** @jsxRuntime classic */
 /** @jsx jsx */
-/* eslint-disable */
 import { jsx } from "@emotion/react";
 import PropTypes from "prop-types";
 import { CometChat } from "@cometchat-pro/chat";

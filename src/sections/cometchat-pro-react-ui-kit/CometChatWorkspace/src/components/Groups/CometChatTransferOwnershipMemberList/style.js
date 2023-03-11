@@ -1,4 +1,3 @@
-/* eslint-disable */
 export const modalWrapperStyle = (props, context) => {
 	const mq = [`@media (min-width : 320px) and (max-width: 767px)`];
 	return {

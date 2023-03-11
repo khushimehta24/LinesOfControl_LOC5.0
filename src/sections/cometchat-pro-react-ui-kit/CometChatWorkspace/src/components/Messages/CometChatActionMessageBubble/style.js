@@ -1,4 +1,3 @@
-/* eslint-disable */
 export const actionMessageStyle = () => {
 	return {
 		padding: "8px 16px",

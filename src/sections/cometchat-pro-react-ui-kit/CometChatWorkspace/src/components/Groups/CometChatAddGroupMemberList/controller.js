@@ -1,5 +1,5 @@
 import { CometChat } from "@cometchat-pro/chat";
-/* eslint-disable */
+
 import { UIKitSettings } from "../../../util/UIKitSettings";
 
 export class AddMembersManager {

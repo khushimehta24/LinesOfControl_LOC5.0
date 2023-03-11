@@ -1,4 +1,3 @@
-/* eslint-disable */
 export const modalRowStyle = (theme) => {
 	return {
 		border: `1px solid ${theme.borderColor.primary}`,

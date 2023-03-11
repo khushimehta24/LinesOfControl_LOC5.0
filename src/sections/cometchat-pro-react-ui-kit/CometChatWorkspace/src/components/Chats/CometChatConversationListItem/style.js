@@ -1,4 +1,3 @@
-/* eslint-disable */
 export const listItem = (props) => {
 	const selectedState =
 		props.selectedConversation &&

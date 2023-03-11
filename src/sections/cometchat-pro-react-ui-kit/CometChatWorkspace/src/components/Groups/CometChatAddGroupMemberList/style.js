@@ -1,4 +1,3 @@
-/* eslint-disable */
 export const modalWrapperStyle = (context) => {
 	const mq = context.theme.breakPoints.map((x) => `@media ${x}`);
 

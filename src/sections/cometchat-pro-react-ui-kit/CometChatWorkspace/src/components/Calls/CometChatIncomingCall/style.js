@@ -1,4 +1,3 @@
-/* eslint-disable */
 export const incomingCallWrapperStyle = (props, keyframes) => {
 	const slideDown = keyframes`
     0% { transform: translateY(-50px); }

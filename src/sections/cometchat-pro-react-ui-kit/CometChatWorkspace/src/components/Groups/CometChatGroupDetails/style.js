@@ -1,4 +1,3 @@
-/* eslint-disable */
 export const detailStyle = (context) => {
 	return {
 		height: "100%",

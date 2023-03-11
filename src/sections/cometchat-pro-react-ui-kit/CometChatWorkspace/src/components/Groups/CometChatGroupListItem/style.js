@@ -1,4 +1,3 @@
-/* eslint-disable */
 export const listItem = (props, context) => {
 	const selectedState =
 		props.selectedGroup && props.selectedGroup.guid === props.group.guid

@@ -1,4 +1,3 @@
-/* eslint-disable */
 export const modalRowStyle = (props, context) => {
 	return {
 		display: "flex",

@@ -1,4 +1,3 @@
-/* eslint-disable */
 export const chatScreenStyle = (props) => {
 	return {
 		display: "flex",
