@@ -29,3 +29,22 @@ class FollowListSerializer(serializers.ModelSerializer):
     class Meta:
         model = Follow
         fields = ['id', 'follower', 'main_user']
+
+
+class LikeSerializer(serializers.ModelSerializer):
+    liked_by = UserSerializer(read_only=True)
+    liked_to = UserSerializer(read_only=True)
+    liked_profile = serializers.IntegerField(write_only=True)
+
+    class Meta:
+        model = Like
+        fields = ['id', 'liked_by', 'liked_to', 'liked_profile']
+
+    def create(self, validated_data, user):
+        id = validated_data.pop('liked_profile')
+        user2 = User.objects.get(id = id)
+        like = Like.objects.create(liked_by = user, liked_to = user2)
+        user2.likes +=1
+        user2.save()
+        return like, user2
+

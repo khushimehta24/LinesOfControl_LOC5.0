@@ -35,3 +35,17 @@ class FollowListAPI(ListAPIView):
                 list_of_ids.append(follow_back.first().id)
         queryset1 = Follow.objects.filter(id__in=list_of_ids)
         return queryset1
+
+
+class LikeAPI(GenericAPIView):
+    serializer_class = LikeSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
+    def post(self, request):
+        user = User.objects.get(id=request.user.id)
+        data = request.data
+        serializer = self.serializer_class(data=data)
+        serializer.is_valid(raise_exception = True)
+        like, user2 = serializer.create(serializer.validated_data, user)
+        serializer2 = UserSerializer(user2)
+        return Response({"response":"Success", "user":serializer2.data}, status=status.HTTP_201_CREATED)
