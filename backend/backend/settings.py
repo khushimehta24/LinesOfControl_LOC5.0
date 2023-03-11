@@ -147,9 +147,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
 STATIC_URL = 'static/'
-STATIC_ROOT = '/home/locbe/locbackendsheesh.pythonanywhere.com/static/'
+STATIC_ROOT = '/home/locbe/locbe.pythonanywhere.com/static/'
 MEDIA_URL = 'media/'
-MEDIA_ROOT = '/home/locbe/locbackendsheesh.pythonanywhere.com/media/'
+MEDIA_ROOT = '/home/locbe/locbe.pythonanywhere.com/media/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
