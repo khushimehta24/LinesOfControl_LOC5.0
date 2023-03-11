@@ -14,9 +14,7 @@ class RegisterSerializer(serializers.ModelSerializer):
     user_name = serializers.CharField(read_only = True)
 
     def create(self, validated_data):
-        print(validated_data)
         validated_data.pop('r_id')
-        print(validated_data)
         obj = Register.objects.create(event_name = validated_data['event_name'], user_name = validated_data['user_name'])
     
     class Meta:
