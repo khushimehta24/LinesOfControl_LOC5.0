@@ -4,7 +4,7 @@ from accounts.models import *
 from accounts.serializers import *
 
 
-class FollowRequestSerializer(serializers.ModelSerializer):
+class FollowSerializer(serializers.ModelSerializer):
     follower  = serializers.CharField(read_only=True)
 
     class Meta:
@@ -16,32 +16,11 @@ class FollowRequestSerializer(serializers.ModelSerializer):
         follow.save()
         return follow
 
-class FollowAcceptSerializer(serializers.ModelSerializer):
-    id = serializers.IntegerField()
 
-    class Meta:
-        model = Follow
-        fields = ['id', 'accepted']
-
-    def update(self,validated_data):
-        instance = Follow.objects.get(id=validated_data['id'])
-        instance.accepted = validated_data['accepted']
-        instance.pending = False
-        instance.save()
-        return instance
-
-
-class FollowRequestListSerializer(serializers.ModelSerializer):
+class FollowListSerializer(serializers.ModelSerializer):
     follower = UserSerializer()
     main_user = UserSerializer()
 
     class Meta:
         model = Follow
         fields = ['id', 'follower', 'main_user']
-
-# class NotificiationSerializer(serializers.ModelSerializer):
-#     user = serializers.CharField(read_only=True)
-
-#     class Meta:
-#         model = Notification
-#         fields = ['user', 'message']

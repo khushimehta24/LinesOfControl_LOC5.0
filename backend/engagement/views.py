@@ -8,7 +8,7 @@ from accounts.models import *
 
 
 class FollowRequestAPI(GenericAPIView):
-    serializer_class = FollowRequestSerializer
+    serializer_class = FollowSerializer
     permission_classes = [permissions.IsAuthenticated]
 
     def post(self, request):
@@ -20,24 +20,17 @@ class FollowRequestAPI(GenericAPIView):
         return Response({"response":"Success"}, status=status.HTTP_201_CREATED)
 
 
-class FollowAcceptAPI(GenericAPIView):
-    serializer_class = FollowAcceptSerializer
-    permission_classes = [permissions.IsAuthenticated]
-
-    def put(self,request):
-        user = User.objects.get(id=request.user.id)
-        data = request.data
-        serializer = self.serializer_class(data=data)
-        serializer.is_valid()
-        user = serializer.update(request.data)
-        return Response({'message':'Success'}, status = status.HTTP_200_OK)
-
-
-class FollowRequestListAPI(ListAPIView):
-    serializer_class = FollowRequestListSerializer
+class FollowListAPI(ListAPIView):
+    serializer_class = FollowListSerializer
     permission_classes = [permissions.IsAuthenticated]
 
     def get_queryset(self):
         user = User.objects.get(id=self.request.user.id)
-        queryset = Follow.objects.filter(main_user = user, pending = True)
-        return queryset
+        queryset = Follow.objects.filter(follower = user)
+        list_of_ids = []
+
+        for query in queryset:
+            follow_back = Follow.objects.filter(follower = query.main_user, main_user = user)
+            if follow_back.exists():
+                list_of_ids.append(follow_back.first().id)
+        return Follow.objects.filter(id__in=list_of_ids)
