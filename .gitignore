@@ -8,6 +8,8 @@ virtualenv/
 env/
 venv/
 ENV/
+backvenv/
+
 # VS Code settings
 media/
 .ipynb_checkpoints/
