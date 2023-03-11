@@ -17,7 +17,8 @@ class UserRegisterAPI(GenericAPIView):
         serializer.is_valid(raise_exception = True)
         user = serializer.save()
         token = Token.objects.create(user=user)
-        return Response({"response":"Successfully created", "token":token.key}, status=status.HTTP_201_CREATED)
+        serializer = self.serializer_class(user)
+        return Response({"response":"Successfully created", "token":token.key, "user":serializer.data }, status=status.HTTP_201_CREATED)
 
 
 class LoginAPI(GenericAPIView):
@@ -32,7 +33,7 @@ class LoginAPI(GenericAPIView):
             login(request,user)
             serializer = self.serializer_class(user)
             token = Token.objects.get(user=user)
-            return Response({"response":"Success", "token":token.key, "is_client": serializer.data['is_client']},status = status.HTTP_200_OK)
+            return Response({"response":"Success", "token":token.key, "user": serializer.data},status = status.HTTP_200_OK)
         else:   
             return Response({"response":'Invalid Credentials'},status = status.HTTP_404_NOT_FOUND)
 

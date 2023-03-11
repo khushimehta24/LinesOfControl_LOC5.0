@@ -10,10 +10,11 @@ phone_no_pattern = re.compile(r"\d{10}")
 class UserRegisterSerializer(serializers.ModelSerializer):
     password= serializers.CharField(max_length = 16, min_length = 8, write_only=True)
     confirm_password= serializers.CharField(max_length = 16, min_length = 8, write_only=True)
+    id = serializers.IntegerField(read_only=True)
 
     class Meta:
         model = User
-        fields = ['uid', 'name', 'email', 'password','confirm_password','phone_no', 'city', 'image', 'is_client']
+        fields = ['id','uid', 'name', 'email', 'password','confirm_password','phone_no', 'city', 'image', 'is_client']
 
     # To validate data received
     def validate(self, attrs):
@@ -37,10 +38,18 @@ class UserRegisterSerializer(serializers.ModelSerializer):
 
 class LoginSerializer(serializers.ModelSerializer):
     password=serializers.CharField(max_length=32,min_length=8,write_only = True)
+    id = serializers.IntegerField(read_only=True)
+    uid = serializers.CharField(read_only=True)
+    name = serializers.CharField(read_only=True)
+    phone_no = serializers.CharField(read_only=True)
+    city = serializers.CharField(read_only=True)
+    image = serializers.CharField(read_only=True)
+    likes = serializers.IntegerField(read_only=True)
     is_client = serializers.BooleanField(read_only=True)
+
     class Meta:
         model = User
-        fields = ['email','password', 'is_client']
+        fields = ['id', 'uid', 'name', 'email','phone_no', 'password', 'city', 'image', 'likes', 'is_client']
 
 class UserSerializer(serializers.ModelSerializer):
     password= serializers.CharField(max_length = 16, min_length = 8, write_only=True)
