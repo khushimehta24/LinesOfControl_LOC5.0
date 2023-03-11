@@ -1,15 +1,21 @@
 import ReactDOM from 'react-dom/client';
 
 //
+import { CometChat } from '@cometchat-pro/chat';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import reportWebVitals from './reportWebVitals';
 
 // ----------------------------------------------------------------------
+const appID = "234738ca9e8cf860";
+const region = "EU";
+const appSetting = new CometChat.AppSettingsBuilder().subscribePresenceForAllUsers().setRegion(region).build();
+CometChat.init(appID, appSetting).then(() => {
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-
-root.render(<App />);
+    const root = ReactDOM.createRoot(document.getElementById('root'));
+    root.render(<App />);
+}
+)
 
 // If you want to enable client cache, register instead.
 serviceWorker.unregister();

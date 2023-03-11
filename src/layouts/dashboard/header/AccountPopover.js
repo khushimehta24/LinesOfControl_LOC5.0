@@ -26,7 +26,8 @@ const MENU_OPTIONS = [
 
 export default function AccountPopover() {
   const [open, setOpen] = useState(null);
-
+  const lfuser = JSON.parse(localStorage.getItem('lfuser'))
+  console.log(lfuser)
   const handleOpen = (event) => {
     setOpen(event.currentTarget);
   };
@@ -54,7 +55,7 @@ export default function AccountPopover() {
           }),
         }}
       >
-        <Avatar src={account.photoURL} alt="photoURL" />
+        <Avatar src={lfuser.image} alt="photoURL" />
       </IconButton>
 
       <Popover
@@ -78,10 +79,10 @@ export default function AccountPopover() {
       >
         <Box sx={{ my: 1.5, px: 2.5 }}>
           <Typography variant="subtitle2" noWrap>
-            {account.displayName}
+            {lfuser.uid}
           </Typography>
           <Typography variant="body2" sx={{ color: 'text.secondary' }} noWrap>
-            {account.email}
+            {lfuser.email}
           </Typography>
         </Box>
 

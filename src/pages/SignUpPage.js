@@ -58,7 +58,7 @@ export default function SignUpPage() {
                 <Container maxWidth="sm">
                     <StyledContent>
                         <Typography variant="h4" gutterBottom>
-                            Sign up to K-PUP WMS
+                            Sign up to LensFolio
                         </Typography>
 
                         <Typography variant="body2" sx={{ mb: 5 }}>
