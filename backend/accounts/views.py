@@ -1,4 +1,4 @@
-from rest_framework.generics import GenericAPIView
+from rest_framework.generics import GenericAPIView, ListAPIView
 from rest_framework.authtoken.models import Token
 from .serializers import *
 from django.contrib.auth import authenticate,login
@@ -60,3 +60,8 @@ class UserGetAPI(GenericAPIView):
         user = serializer.update(request.data, user)
         return Response(request.data, status = status.HTTP_200_OK)
 
+
+class UserListAPI(ListAPIView):
+    serializer_class = UserSerializer
+    permission_classes = [permissions.IsAuthenticated]
+    queryset = User.objects.exclude(is_superuser = True)

@@ -39,7 +39,7 @@ class FollowListAPI(ListAPIView):
 
 class LikeAPI(GenericAPIView):
     serializer_class = LikeSerializer
-    permission_classes = [permissions.IsAuthenticated]
+    permission_classes = [permissions.AllowAny]
 
     def post(self, request):
         user = User.objects.get(id=request.user.id)
