@@ -14,7 +14,7 @@ from accounts.models import *
 def get_all_events(request):
     event_objs = GroupEvent.objects.all()
     serializer = GroupEventSerializer(event_objs,many=True)
-    return Response({'status':200, 'all events': serializer.data})
+    return Response({'status':200, 'all_events': serializer.data})
 
 
 #creates an event
@@ -34,7 +34,7 @@ def create_event(request):
 def all_events_user(request):
     event_objs = GroupEvent.objects.filter(creator=request.user)
     serializer = GroupEventSerializer(event_objs,many=True)
-    return Response({'status':200, 'all events of a user': serializer.data})
+    return Response({'status':200, 'all_events_user': serializer.data})
 
 
 #view an event - dynamic url
@@ -42,7 +42,7 @@ def all_events_user(request):
 def open_event(request, pk):
     event_objs = GroupEvent.objects.get(id=pk)
     serializer = GroupEventSerializer(event_objs)
-    return Response({'status':200, 'opened event': serializer.data})
+    return Response({'status':200, 'opened_event': serializer.data})
 
 
 #on register -- mode  
@@ -72,4 +72,10 @@ class OnRegisterAPI(GenericAPIView):
 def on_register_get(request):
     event_objs = Register.objects.all()
     serializer = RegisterSerializer(event_objs, many=True)
-    return Response({'status':200, 'opened event': serializer.data})
+    return Response({'status':200, 'opened_event': serializer.data})
+
+@api_view(['GET'])
+def get_all_applicants(request,pk):
+    event_objs = Register.objects.filter(id=pk)
+    serializer = RegisterSerializer(event_objs, many=True)
+    return Response({'status':200, 'all_applicants': serializer.data})
