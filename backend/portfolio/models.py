@@ -8,3 +8,4 @@ class Photograph(models.Model):
     caption = models.CharField(max_length=200)
     location = models.CharField(max_length=100)
     created_at = models.DateField(auto_now_add=True)
+    category = models.CharField(max_length=20, blank=True)

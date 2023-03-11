@@ -7,12 +7,13 @@ from accounts.serializers import *
 class PhotographSerializer(serializers.ModelSerializer):
     created_at = serializers.DateField(read_only=True)
     user = serializers.CharField(read_only=True)
+    category = serializers.CharField(read_only=True)
 
     class Meta:
         model = Photograph
-        fields = ['image', 'user', 'caption', 'location', 'created_at']
+        fields = ['image', 'user', 'caption', 'location', 'created_at', 'category']
 
     def create(self, data, user):
-        obj = Photograph.objects.create(user = user, **data)
+        obj = Photograph.objects.create(user = user, category = 'nature', **data)
         obj.save()
         return obj
