@@ -47,6 +47,8 @@ class User(AbstractUser):
     city = models.CharField(max_length= 50, blank = True)
     image = models.URLField(max_length=200, blank=True)
     likes = models.IntegerField(blank=True, default=0)
+    followers = models.IntegerField(blank=True, default=0)
+    following = models.IntegerField(blank=True, default=0)
     is_client = models.BooleanField(blank=True, default=False)
 
     USERNAME_FIELD = 'email'

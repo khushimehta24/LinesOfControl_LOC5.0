@@ -6,19 +6,19 @@ from accounts.models import User
 # Register your models here.
 class UserAdmin(BaseUserAdmin):
     model = User
-    list_display = ['id','uid','email', 'name','is_staff','is_active','is_superuser', 'phone_no', 'city', 'image', 'likes', 'is_client']
-    list_filter = ['id','uid','email','name','is_staff','is_active','is_superuser', 'phone_no', 'city', 'image', 'likes', 'is_client']
+    list_display = ['id','uid','email', 'name','is_staff','is_active','is_superuser', 'phone_no', 'city', 'image', 'likes', 'followers', 'following', 'is_client']
+    list_filter = ['id','uid','email','name','is_staff','is_active','is_superuser', 'phone_no', 'city', 'image', 'likes', 'followers', 'following', 'is_client']
 
     fieldsets = (
         (None, {'fields': ('email', 'password')}),
-        ('Personal info', {'fields': ('uid','name','phone_no','city', 'image', 'likes', 'is_client'),}),
+        ('Personal info', {'fields': ('uid','name','phone_no','city', 'image', 'likes', 'followers', 'following', 'is_client'),}),
         ('Permissions', {'fields': ('is_active','is_staff','is_superuser')}),
     )
 
     add_fieldsets = (
         (None, {
             'classes': ('wide,'),
-            'fields': ('email', 'password1', 'password2', 'name','is_staff','is_active', 'phone_no', 'city', 'image', 'likes', 'is_client'),
+            'fields': ('email', 'password1', 'password2', 'name','is_staff','is_active', 'phone_no', 'city', 'image', 'likes', 'followers', 'following', 'is_client'),
         }),
     )
     search_fields = ('email',)

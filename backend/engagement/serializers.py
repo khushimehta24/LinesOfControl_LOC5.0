@@ -13,7 +13,12 @@ class FollowSerializer(serializers.ModelSerializer):
 
     def create(self, data, user):
         follow = Follow.objects.create(follower = user, main_user = data['main_user'])
+        main_user = data['main_user']
+        main_user.followers +=1
+        user.following +=1
         follow.save()
+        main_user.save()
+        user.save()
         return follow
 
 

@@ -7,7 +7,7 @@ from rest_framework import status,permissions
 from accounts.models import *
 
 
-class FollowRequestAPI(GenericAPIView):
+class FollowAPI(GenericAPIView):
     serializer_class = FollowSerializer
     permission_classes = [permissions.IsAuthenticated]
 
@@ -33,4 +33,5 @@ class FollowListAPI(ListAPIView):
             follow_back = Follow.objects.filter(follower = query.main_user, main_user = user)
             if follow_back.exists():
                 list_of_ids.append(follow_back.first().id)
-        return Follow.objects.filter(id__in=list_of_ids)
+        queryset1 = Follow.objects.filter(id__in=list_of_ids)
+        return queryset1
