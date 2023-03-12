@@ -35,7 +35,7 @@ class FollowListSerializer(serializers.ModelSerializer):
 class LikeSerializer(serializers.ModelSerializer):
     liked_by = UserSerializer(read_only=True)
     liked_to = UserSerializer(read_only=True)
-    liked_profile = serializers.IntegerField(write_only=True)
+    liked_profile = serializers.CharField(write_only=True)
 
     class Meta:
         model = Like

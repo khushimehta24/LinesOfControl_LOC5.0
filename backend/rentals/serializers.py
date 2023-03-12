@@ -10,7 +10,7 @@ class ProductGetSerializer(serializers.ModelSerializer):
         fields = ['name','desc','rentpday','image','from_date','to_date','creator']
 
 class ProductPostSerializer(serializers.ModelSerializer):
-    creator = serializers.IntegerField(read_only=True)
+    creator = serializers.CharField(read_only=True)
     class Meta:
         model = Product
         fields = ['name','desc','rentpday','image','from_date','to_date','creator']

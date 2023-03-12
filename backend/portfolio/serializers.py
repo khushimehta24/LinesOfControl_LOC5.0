@@ -6,7 +6,7 @@ from accounts.serializers import *
 
 class PhotographSerializer(serializers.ModelSerializer):
     created_at = serializers.DateField(read_only=True)
-    user = serializers.IntegerField(read_only=True)
+    user = serializers.CharField(read_only=True)
     category = serializers.CharField(read_only=True)
 
     class Meta:
