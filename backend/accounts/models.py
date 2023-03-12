@@ -51,6 +51,11 @@ class User(AbstractUser):
     following = models.CharField(max_length = 200, blank=True)
     engagement = models.IntegerField(blank=True, default=0)
     is_client = models.BooleanField(blank=True, default=False)
+    nature = models.IntegerField(blank=True, default=0)
+    portrait = models.IntegerField(blank=True, default=0)
+    wildlife = models.IntegerField(blank=True, default=0)
+    urban = models.IntegerField(blank=True, default=0)
+    cluster = models.IntegerField(blank=True, null=True)
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS=[]
@@ -58,7 +63,7 @@ class User(AbstractUser):
     objects = UserManager()
 
     def __str__(self):
-        return self.name
+        return self.id
 
     @property
     def token(self):

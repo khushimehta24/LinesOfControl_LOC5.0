@@ -15,7 +15,7 @@ class UserRegisterSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ['id','uid', 'name', 'email', 'password','confirm_password','phone_no', 'city', 'image', 'likes', 'followers', 'following', 'is_client', 'engagement']
+        fields = ['id','uid', 'name', 'email', 'password','confirm_password','phone_no', 'city', 'image', 'likes', 'followers', 'following', 'is_client', 'engagement', 'nature', 'portrait', 'wildlife', 'urban', 'cluster']
 
     # To validate data received
     def validate(self, attrs):
@@ -46,11 +46,17 @@ class LoginSerializer(serializers.ModelSerializer):
     city = serializers.CharField(read_only=True)
     image = serializers.CharField(read_only=True)
     likes = serializers.IntegerField(read_only=True)
+    engagement = serializers.IntegerField(read_only=True)
     is_client = serializers.BooleanField(read_only=True)
+    nature = serializers.IntegerField(read_only=True)
+    portrait = serializers.IntegerField(read_only=True)
+    wildlife = serializers.IntegerField(read_only=True)
+    urban = serializers.IntegerField(read_only=True)
+    cluster = serializers.IntegerField(read_only=True)
 
     class Meta:
         model = User
-        fields = ['id', 'uid', 'name', 'email','phone_no', 'password', 'city', 'image', 'likes', 'followers', 'following', 'is_client', 'engagement']
+        fields = ['id', 'uid', 'name', 'email','phone_no', 'password', 'city', 'image', 'likes', 'followers', 'following', 'is_client', 'engagement', 'nature', 'portrait', 'wildlife', 'urban', 'cluster']
 
 class UserSerializer(serializers.ModelSerializer):
     photos = PhotographSerializer(source ='user', many=True)
@@ -58,7 +64,7 @@ class UserSerializer(serializers.ModelSerializer):
     uid = serializers.CharField(read_only=True)
     class Meta:
         model = User
-        fields = ['id', 'uid', 'name', 'email','phone_no', 'password', 'city', 'image', 'likes', 'followers', 'following', 'is_client', 'engagement', 'photos']   
+        fields = ['id', 'uid', 'name', 'email','phone_no', 'password', 'city', 'image', 'likes', 'followers', 'following', 'is_client', 'engagement', 'nature', 'portrait', 'wildlife', 'urban', 'cluster', 'photos']   
     # To update user
     def update(self,validated_data,instance):
         instance.name = validated_data['name'] 

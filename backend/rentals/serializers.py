@@ -10,9 +10,14 @@ class ProductGetSerializer(serializers.ModelSerializer):
         fields = ['name','desc','rentpday','image','from_date','to_date','creator']
 
 class ProductPostSerializer(serializers.ModelSerializer):
+    creator = serializers.IntegerField(read_only=True)
     class Meta:
         model = Product
         fields = ['name','desc','rentpday','image','from_date','to_date','creator']
+
+    def create(self, validated_data, user):
+        obj = Product.objects.create(creator = user, **validated_data)
+        return obj
 
 class ProductSearchSerializer(serializers.Serializer):
     search = serializers.CharField(write_only = True)

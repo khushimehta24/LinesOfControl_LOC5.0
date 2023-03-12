@@ -43,11 +43,11 @@ class CreateRentalAPI(GenericAPIView):
 
     def post(self, request):
         data = request.data
-        serializer = ProductPostSerializer(data = request.data)
+        serializer = ProductPostSerializer(data = data)
         print(request.data)
         if not serializer.is_valid():
             return Response({'status':403,'message': "something went wrong"})
-        serializer.save()
+        obj = serializer.create(serializer.validated_data, request.user)
         return Response({'status':200, 'payload': serializer.data,'message': "Data entered"})    
 
 #view a product - dynamic url

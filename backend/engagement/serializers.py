@@ -5,7 +5,7 @@ from accounts.serializers import UserSerializer, UserRegisterSerializer
 
 
 class FollowSerializer(serializers.ModelSerializer):
-    follower  = serializers.CharField(read_only=True)
+    follower  = serializers.IntegerField(read_only=True)
 
     class Meta:
         model = Follow
