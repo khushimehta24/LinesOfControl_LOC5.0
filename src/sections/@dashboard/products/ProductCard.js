@@ -30,16 +30,16 @@ export default function ShopProductCard({ product }) {
   return <CardContent sx={{ bgcolor: 'white', padding: '10px', borderRadius: '10px' }}>
     <Grid container columnSpacing={3} sx={{ display: 'flex', alignItems: 'center', marginBottom: '3%' }}>
       <Grid item>
-        <CardMedia component='img' image='https://source.unsplash.com/random/9' sx={{ width: '70px', height: '70px', borderRadius: '50px' }} />
+        <CardMedia component='img' image={product.img} sx={{ width: '70px', height: '70px', borderRadius: '50px' }} />
       </Grid>
       <Grid item>
-        <h2 style={{ fontFamily: 'Poppins' }}>{product.name}</h2>
+        <h2 style={{ fontFamily: 'Poppins' }}>{product.name.length > 15 ? product.name.slice(0, 15) + '...' : product.name}</h2>
       </Grid>
     </Grid>
     <p style={{ fontSize: '12px', color: '#D2D2D2', margin: '0', padding: '0' }}> {product.date}   -   {product.venue}</p>
-    <h3 style={{ margin: '0', padding: '0' }}>Event Name</h3>
+    <h3 style={{ margin: '0', padding: '0' }}>{product.creator.name}</h3>
     <p style={{ fontSize: '12px', color: '#D2D2D2', padding: '0', marginBottom: '0' }}>Hosted By</p>
-    <CardMedia component='img' image='https://source.unsplash.com/random/9' sx={{ width: '30px', border: '2px solid black', height: '30px', borderRadius: '50px' }} />
+    <CardMedia component='img' image={product.creator.image} sx={{ width: '30px', border: '2px solid black', height: '30px', borderRadius: '50px' }} />
     <Button sx={{
       width: '100%', bgcolor: 'black', color: 'white', marginTop: '10%', "&:hover": {
         backgroundColor: 'black'

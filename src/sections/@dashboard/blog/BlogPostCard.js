@@ -8,6 +8,8 @@ import { fShortenNumber } from '../../../utils/formatNumber';
 //
 import SvgColor from '../../../components/svg-color';
 import Iconify from '../../../components/iconify';
+import { useEffect, useState } from 'react';
+import GetServices from 'src/services/GetServices';
 
 // ----------------------------------------------------------------------
 
@@ -56,7 +58,7 @@ BlogPostCard.propTypes = {
   index: PropTypes.number,
 };
 
-export default function BlogPostCard({ post, index }) {
+export default function BlogPostCard({ post, index, prod, setProd }) {
   const { cover, title, view, comment, share, author, createdAt } = post;
   const latestPostLarge = index === 0;
   const latestPost = index === 1 || index === 2;
@@ -67,29 +69,21 @@ export default function BlogPostCard({ post, index }) {
     { number: share, icon: 'eva:share-fill' },
   ];
 
+  useEffect(() => {
+    const func = async () => {
+      await GetServices.rentals()
+        .then((res) => {
+          setProd(res.data.all_products)
+          console.log(res)
+        })
+    }
+    func()
+  }, [])
+
   return (
-    <Grid item xs={12} sm={latestPostLarge ? 12 : 6} md={latestPostLarge ? 6 : 3}>
-      <Card sx={{ position: 'relative' }}>
+    <Grid item xs={12} md={3} sx={{ height: '100%' }}>
+      <Card sx={{ position: 'relative', height: '100%' }}>
         <StyledCardMedia
-          sx={{
-            ...((latestPostLarge || latestPost) && {
-              pt: 'calc(100% * 4 / 3)',
-              '&:after': {
-                top: 0,
-                content: "''",
-                width: '100%',
-                height: '100%',
-                position: 'absolute',
-                bgcolor: (theme) => alpha(theme.palette.grey[900], 0.72),
-              },
-            }),
-            ...(latestPostLarge && {
-              pt: {
-                xs: 'calc(100% * 4 / 3)',
-                sm: 'calc(100% * 3 / 4.66)',
-              },
-            }),
-          }}
         >
           <SvgColor
             color="paper"
@@ -101,35 +95,19 @@ export default function BlogPostCard({ post, index }) {
               bottom: -15,
               position: 'absolute',
               color: 'background.paper',
-              ...((latestPostLarge || latestPost) && { display: 'none' }),
             }}
           />
           <StyledAvatar
             alt={author.name}
             src={author.avatarUrl}
-            sx={{
-              ...((latestPostLarge || latestPost) && {
-                zIndex: 9,
-                top: 24,
-                left: 24,
-                width: 40,
-                height: 40,
-              }),
-            }}
+
           />
 
           <StyledCover alt={title} src={cover} />
         </StyledCardMedia>
 
         <CardContent
-          sx={{
-            pt: 4,
-            ...((latestPostLarge || latestPost) && {
-              bottom: 0,
-              width: '100%',
-              position: 'absolute',
-            }),
-          }}
+
         >
           <Typography gutterBottom variant="caption" sx={{ color: 'text.disabled', display: 'block' }}>
             {fDate(createdAt)}
@@ -139,12 +117,6 @@ export default function BlogPostCard({ post, index }) {
             color="inherit"
             variant="subtitle2"
             underline="hover"
-            sx={{
-              ...(latestPostLarge && { typography: 'h5', height: 60 }),
-              ...((latestPostLarge || latestPost) && {
-                color: 'common.white',
-              }),
-            }}
           >
             {title}
           </StyledTitle>
@@ -153,14 +125,7 @@ export default function BlogPostCard({ post, index }) {
             {POST_INFO.map((info, index) => (
               <Box
                 key={index}
-                sx={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  ml: index === 0 ? 0 : 1.5,
-                  ...((latestPostLarge || latestPost) && {
-                    color: 'grey.500',
-                  }),
-                }}
+
               >
                 <Iconify icon={info.icon} sx={{ width: 16, height: 16, mr: 0.5 }} />
                 <Typography variant="caption">{fShortenNumber(info.number)}</Typography>

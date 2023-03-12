@@ -5,6 +5,8 @@ import { styled } from '@mui/material/styles';
 import { Autocomplete, InputAdornment, Popper, TextField } from '@mui/material';
 // components
 import Iconify from '../../../components/iconify';
+import GetServices from 'src/services/GetServices';
+import { useState } from 'react';
 
 // ----------------------------------------------------------------------
 
@@ -18,18 +20,27 @@ BlogPostsSearch.propTypes = {
   posts: PropTypes.array.isRequired,
 };
 
-export default function BlogPostsSearch({ posts }) {
+export default function BlogPostsSearch({ prod, setProd }) {
+  const [search, setSearch] = useState('')
+  const change = async (e) => {
+    setSearch(e.target.value)
+    await GetServices.search({ search: e.target.value })
+      .then((res) => {
+        console.log(res)
+      })
+  }
   return (
     <Autocomplete
       sx={{ width: 280 }}
       autoHighlight
       popupIcon={null}
       PopperComponent={StyledPopper}
-      options={posts}
-      getOptionLabel={(post) => post.title}
+      options={prod}
+      getOptionLabel={(prod) => prod.name}
       isOptionEqualToValue={(option, value) => option.id === value.id}
       renderInput={(params) => (
         <TextField
+          onChange={change}
           {...params}
           placeholder="Search post..."
           InputProps={{

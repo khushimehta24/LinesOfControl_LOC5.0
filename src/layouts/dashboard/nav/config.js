@@ -14,37 +14,27 @@ const navConfig = [
   {
     title: 'create',
     path: '/dashboard/create',
-    icon: icon('ic_analytics'),
+    icon: icon('ic_create'),
   },
+  // {
+  //   title: 'user',
+  //   path: '/dashboard/user',
+  //   icon: icon('ic_user'),
+  // },
   {
-    title: 'user',
-    path: '/dashboard/user',
-    icon: icon('ic_user'),
-  },
-  {
-    title: 'product',
-    path: '/dashboard/products',
-    icon: icon('ic_cart'),
+    title: 'event',
+    path: '/dashboard/event',
+    icon: icon('ic_event'),
   },
   {
     title: 'map',
     path: '/dashboard/map',
+    icon: icon('ic_map'),
+  },
+  {
+    title: 'rent',
+    path: '/dashboard/rent',
     icon: icon('ic_cart'),
-  },
-  {
-    title: 'blog',
-    path: '/dashboard/blog',
-    icon: icon('ic_blog'),
-  },
-  {
-    title: 'login',
-    path: '/login',
-    icon: icon('ic_lock'),
-  },
-  {
-    title: 'signup',
-    path: '/signup',
-    icon: icon('ic_lock'),
   },
   {
     title: 'Chat',
@@ -54,12 +44,7 @@ const navConfig = [
   {
     title: 'Calendar',
     path: '/dashboard/calendar',
-    icon: icon('ic_disabled'),
-  },
-  {
-    title: 'Not found',
-    path: '/404',
-    icon: icon('ic_disabled'),
+    icon: icon('ic_calendar'),
   },
 ];
 

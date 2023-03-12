@@ -15,9 +15,11 @@ export default function ProductsPage() {
   const [openFilter, setOpenFilter] = useState(false);
   const [events, setEvents] = useState([])
   useEffect(() => {
-    const func=async()=>{await FetchService.getEvent().then((res) => {
-      setEvents(res.data.all_events)
-    })}
+    const func = async () => {
+      await FetchService.getEvent().then((res) => {
+        setEvents(res.data.all_events)
+      })
+    }
     func()
   }, [])
   console.log(events)
@@ -37,22 +39,12 @@ export default function ProductsPage() {
 
       <Container>
         <Typography variant="h4" sx={{ mb: 5 }}>
-          Products
+          Events
         </Typography>
 
-        <Stack direction="row" flexWrap="wrap-reverse" alignItems="center" justifyContent="flex-end" sx={{ mb: 5 }}>
-          <Stack direction="row" spacing={1} flexShrink={0} sx={{ my: 1 }}>
-            <ProductFilterSidebar
-              openFilter={openFilter}
-              onOpenFilter={handleOpenFilter}
-              onCloseFilter={handleCloseFilter}
-            />
-            <ProductSort />
-          </Stack>
-        </Stack>
+        <Stack direction="row" flexWrap="wrap-reverse" alignItems="center" justifyContent="flex-end" sx={{ mb: 1 }} />
 
         <ProductList products={events} />
-        <ProductCartWidget />
       </Container>
     </>
   );

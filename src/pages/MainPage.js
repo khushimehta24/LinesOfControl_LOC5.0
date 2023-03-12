@@ -2,6 +2,7 @@ import { Box, Grid, Typography } from '@mui/material'
 import React, { useEffect } from 'react'
 import GetServices from '../services/GetServices'
 import TopCreators from '../sections/@dashboard/main/TopCreators'
+import Feed from '../sections/@dashboard/Feed'
 
 function MainPage() {
 
@@ -23,6 +24,8 @@ function MainPage() {
             <Grid container columnSpacing={3} sx={{ width: '100%', display: 'flex' }}>
                 <TopCreators />
             </Grid>
+            <Typography variant='h5' sx={{ fontFamily: 'Poppins', marginTop: '3%' }}>Your Feed</Typography>
+            <Feed />
         </Box>
     )
 }

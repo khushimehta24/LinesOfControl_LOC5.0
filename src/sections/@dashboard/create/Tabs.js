@@ -54,7 +54,7 @@ export default function BasicTabs() {
     return (
         <Box sx={{ width: '100%', padding: '0' }}>
             <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-                <Tabs value={value} sx={{ '& .Mui-selected': { color: '#5E23C9 !important' }, '& .MuiTabs-indicator': { backgroundColor: '#5E23C9' } }} onChange={handleChange} aria-label="basic tabs example">
+                <Tabs value={value} sx={{ '& .Mui-selected': { color: '#D659D2 !important' }, '& .MuiTabs-indicator': { backgroundColor: '#D659D2' } }} onChange={handleChange} aria-label="basic tabs example">
                     <Tab icon={<CalendarTodayIcon />} label='Event'   {...a11yProps(0)} />
                     <Tab icon={<PhotoCameraIcon />} label='Add Photograph' {...a11yProps(1)} />
                     <Tab icon={<StorefrontIcon />} label='Rent' {...a11yProps(2)} />

@@ -32,4 +32,28 @@ const follow = (data) => {
     })
 }
 
-export default { getUserEvent, users, getChat, follow }
+const rentals = () => {
+    return httpCommon.get(`/rentals/get_all_products/`, {
+        headers: {
+            Authorization: `Token ${localStorage.getItem("token")}`
+        }
+    })
+}
+
+const search = () => {
+    return httpCommon.post(`/rentals/search_product/`, {
+        headers: {
+            Authorization: `Token ${localStorage.getItem("token")}`
+        }
+    })
+}
+
+const feed = () => {
+    return httpCommon.get(`/portfolio/photo-following/`, {
+        headers: {
+            Authorization: `Token ${localStorage.getItem("token")}`
+        }
+    })
+}
+
+export default { getUserEvent, users, getChat, follow, rentals, search, feed }
