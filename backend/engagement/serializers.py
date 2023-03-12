@@ -20,7 +20,7 @@ class FollowSerializer(serializers.ModelSerializer):
         follow.save()
         main_user.save()
         user.save()
-        return main_user
+        return user
 
 
 class FollowListSerializer(serializers.ModelSerializer):

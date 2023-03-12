@@ -45,7 +45,7 @@ class LoginSerializer(serializers.ModelSerializer):
     phone_no = serializers.CharField(read_only=True)
     city = serializers.CharField(read_only=True)
     image = serializers.CharField(read_only=True)
-    likes = serializers.IntegerField(read_only=True)
+    likes = serializers.CharField(read_only=True)
     engagement = serializers.IntegerField(read_only=True)
     is_client = serializers.BooleanField(read_only=True)
     nature = serializers.IntegerField(read_only=True)
