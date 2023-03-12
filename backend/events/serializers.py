@@ -11,9 +11,14 @@ class GroupEventSerializer(serializers.ModelSerializer):
         # ['name','event_type', 'date','time', 'address', 'description', 'mode', 'latitude', 'longitude', 'ngo']
 
 class GroupEventCreateSerializer(serializers.ModelSerializer):
+    creator = serializers.IntegerField(read_only=True)
     class Meta:
         model = GroupEvent
-        fields = '__all__'
+        fields = ['name','category', 'date','time', 'venue', 'desc', 'duration', 'creator', 'img']
+
+    def create(self, validated_data, user):
+        obj = GroupEvent.objects.create(creator = user, **validated_data)
+
 
 class RegisterSerializer(serializers.ModelSerializer):
     r_id = serializers.IntegerField(write_only=True)

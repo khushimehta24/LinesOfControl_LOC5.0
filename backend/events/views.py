@@ -24,11 +24,12 @@ class CreateEventAPI(GenericAPIView):
 
     def post(self, request):
         data = request.data
+        data 
         serializer = GroupEventCreateSerializer(data = request.data)
         print(request.data)
         if not serializer.is_valid():
             return Response({'status':403,'message': "something went wrong"})
-        serializer.save()
+        serializer.create(serializer.validated_data, request.user)
         return Response({'status':200, 'payload': serializer.data,'message': "Data entered"})    
 
 #all events of an ngo
@@ -63,9 +64,10 @@ class OnRegisterAPI(GenericAPIView):
         if not serializer.is_valid():
             return Response({'status':403,'message': "something went wrong"})
         serializer.create(request.data)
-        event_obj = GroupEvent.objects.get(id=pk)
-        serializer = GroupEventSerializer(event_obj)
-        creator = User.objects.get(id=serializer.data['creator'])
+        print(request.data)
+        event_obj = GroupEvent.objects.get(name=request.data['event_name'])
+        creator = User.objects.get(name=event_obj.creator)
+        # creator = User.objects.get(id=serializer.data['creator'])
         send_event_mail(serializer.data, request.user, 'not creator', creator.name)
         send_event_mail(serializer.data, request.user, 'creator', creator.name)        
         return Response({'status':200, 'payload': serializer.data,'message': "Data entered"})    
