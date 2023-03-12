@@ -27,5 +27,6 @@ urlpatterns = [
     path('events/', include('events.urls')),
     path('portfolio/', include('portfolio.urls')),
     path('rentals/', include('rentals.urls')),
+    path('coords/', include('openaiapp.urls')),
     path('', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
