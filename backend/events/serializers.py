@@ -10,6 +10,11 @@ class GroupEventSerializer(serializers.ModelSerializer):
         fields = '__all__'
         # ['name','event_type', 'date','time', 'address', 'description', 'mode', 'latitude', 'longitude', 'ngo']
 
+class GroupEventCreateSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = GroupEvent
+        fields = '__all__'
+
 class RegisterSerializer(serializers.ModelSerializer):
     r_id = serializers.IntegerField(write_only=True)
     event_name = serializers.CharField(read_only = True)

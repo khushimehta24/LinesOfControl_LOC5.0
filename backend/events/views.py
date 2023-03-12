@@ -18,16 +18,18 @@ def get_all_events(request):
 
 
 #creates an event
-@api_view(['POST'])
-def create_event(request):
-    data = request.data
-    serializer = GroupEventSerializer(data = request.data)
-    print(request.data)
-    if not serializer.is_valid():
-        return Response({'status':403,'message': "something went wrong"})
-    serializer.save()
-    return Response({'status':200, 'payload': serializer.data,'message': "Data entered"})    
+class CreateEventAPI(GenericAPIView):
+    serializer_class = GroupEventCreateSerializer
+    permission_classes = [permissions.IsAuthenticated]
 
+    def post(self, request):
+        data = request.data
+        serializer = GroupEventCreateSerializer(data = request.data)
+        print(request.data)
+        if not serializer.is_valid():
+            return Response({'status':403,'message': "something went wrong"})
+        serializer.save()
+        return Response({'status':200, 'payload': serializer.data,'message': "Data entered"})    
 
 #all events of an ngo
 @api_view(['GET'])
