@@ -6,7 +6,9 @@ class Follow(models.Model):
 
     follower = models.ForeignKey(User,on_delete=models.CASCADE, related_name='follower')
     main_user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='main_user')
-
+    
+    class Meta:
+        unique_together = ('follower', 'main_user',)
 
 class Like(models.Model):
 
