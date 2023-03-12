@@ -15,7 +15,8 @@ function Event() {
         desc: '',
         duration: '',
         time: '',
-        img: ''
+        img: '',
+        category: ''
     })
     const categories = ["urban", "nature", "wildlife", "portrait"]
     const handleChange = (e) => {

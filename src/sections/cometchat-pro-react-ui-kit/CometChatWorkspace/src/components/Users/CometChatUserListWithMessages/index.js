@@ -28,6 +28,7 @@ class CometChatUserListWithMessages extends React.Component {
 
 		this.state = {
 			sidebarview: false,
+			chat: this.props.uid
 		};
 
 		this.contextProviderRef = React.createRef();
@@ -84,6 +85,7 @@ class CometChatUserListWithMessages extends React.Component {
 					>
 						<CometChatUserList
 							_parent='ulwm'
+							chat={this.props.uid}
 							theme={this.props.theme}
 							lang={this.props.lang}
 							onItemClick={this.itemClicked}

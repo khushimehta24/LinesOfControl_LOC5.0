@@ -1,7 +1,8 @@
 import { Grid } from '@mui/material';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { CometChatUserListWithMessages } from '../sections/cometchat-pro-react-ui-kit/CometChatWorkspace/src';
 import { CometChat } from '@cometchat-pro/chat';
+import GetServices from 'src/services/GetServices';
 
 function ChatHome() {
     useEffect(() => {
@@ -14,10 +15,27 @@ function ChatHome() {
             }
         );
     }, []);
+    const [uids, setUids] = useState([])
+
+    useEffect(() => {
+        const func = async () => {
+            await GetServices.getChat()
+                .then((res) => {
+
+                    console.log(res)
+                    const temp = [res.data.map((item) => {
+                        return item.follower.uid
+                    })]
+                    console.log(temp)
+                    setUids(temp)
+                })
+        }
+        func()
+    }, [])
 
     return (
         <Grid container sx={{ display: 'flex', height: '100%' }}>
-            <CometChatUserListWithMessages hi="hi" />
+            <CometChatUserListWithMessages uid={uids} />
         </Grid>
     );
 }

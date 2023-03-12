@@ -46,13 +46,14 @@ class CometChatUserList extends React.PureComponent {
 
 		this.state = {
 			userlist: [],
+			chat: this.props.chat,
 			enableSearchUser: false,
 			decoratorMessage: Translator.translate("LOADING", props.lang),
 		};
 
 		this.contextProviderRef = React.createRef();
 		this.userListRef = React.createRef();
-
+		console.log(props)
 		CometChat.getLoggedinUser()
 			.then((user) => (this.loggedInUser = user))
 			.catch((error) =>
@@ -235,13 +236,26 @@ class CometChatUserList extends React.PureComponent {
 					}
 				} else {
 					console.log(res.data.data)
-					let chat = ['harsh0989']
+					let chat = this.props.chat[0]
+					console.log(this.state, 'tempp')
+
 					let temp = res.data.data.filter((id) => chat.indexOf(id.uid) !== -1)
-					console.log(temp)
-					this.setState({
-						userlist: [...temp],
-						decoratorMessage: "",
-					});
+					if (temp === 0) {
+						console.log(temp, 'tempp')
+
+						this.setState({
+							decoratorMessage: Translator.translate(
+								"NO_USERS_FOUND",
+								this.props.lang
+							),
+						});
+					} else {
+						console.log(temp, 'tempp')
+						this.setState({
+							userlist: [...temp],
+							decoratorMessage: "",
+						});
+					}
 				}
 			})
 			.catch((error) =>
