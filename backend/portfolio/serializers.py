@@ -34,6 +34,7 @@ class PhotographSerializer(serializers.ModelSerializer):
         user.wildlife = wildlife
         user.portrait = portrait
         user.urban = urban
+        user.cluster = 0
         user.save()
         obj.save()
         return obj

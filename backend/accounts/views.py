@@ -65,3 +65,12 @@ class UserListAPI(ListAPIView):
     serializer_class = UserSerializer
     permission_classes = [permissions.IsAuthenticated]
     queryset = User.objects.exclude(is_superuser = True).order_by('-engagement')
+
+
+class UserClusterListAPI(ListAPIView):
+    serializer_class = UserSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
+    def get_queryset(self):
+        user_queryset = User.objects.filter(cluster = self.request.user.cluster).exclude(id=self.request.user.id)
+        return user_queryset
