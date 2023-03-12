@@ -16,6 +16,7 @@ function TopCreators() {
     const toggleDrawer = () => {
         setOpen(!open)
     }
+    const [followed, setfollowed] = useState(true)
     const [value, setValue] = React.useState(1);
 
     const handleChange = (event, newValue) => {
@@ -40,6 +41,10 @@ function TopCreators() {
         await GetServices.follow({ "main_user": crea[id].id })
             .then((res) => {
                 console.log(res)
+                if (res.status === 201) {
+                    localStorage.setItem('lfuser', JSON.stringify(res.data.user))
+                    setfollowed(false)
+                }
             })
     }
 
@@ -48,7 +53,7 @@ function TopCreators() {
             {
                 crea.map((item, index) => {
                     if (index < 4) {
-                        return <Grid onClick={() => setId(index)} item md={3}>
+                        return <Grid onClick={() => setId(index)} item md={3} sx={{ cursor: 'pointer' }}>
                             <CardContent sx={{ bgcolor: 'white', padding: '10px', borderRadius: '5px' }} onClick={() => { toggleDrawer() }}>
                                 <Grid container columnSpacing={1}>
                                     <Grid item md={6}>
@@ -76,7 +81,7 @@ function TopCreators() {
                 sx={{ padding: '0', '& .MuiDrawer-paper': { borderTopLeftRadius: '50px', borderBottomLeftRadius: '50px', bgcolor: 'white', color: 'white' } }}
             >
                 <Box
-                    sx={{ width: 500, bgcolor: 'black', padding: '0', '&.css-c8tzl2-MuiPaper-root-MuiDrawer-paper': { borderRadius: '50px' } }}
+                    sx={{ width: 650, bgcolor: 'black', padding: '0', '&.css-c8tzl2-MuiPaper-root-MuiDrawer-paper': { borderRadius: '50px' } }}
                     role="presentation"
                 >
                     <Grid container columnSpacing={2} sx={{ display: 'flex', width: '100%', padding: '5%', alignItems: 'center' }}>
@@ -90,20 +95,25 @@ function TopCreators() {
                         </Grid>
                         <Grid container sx={{ padding: '0 5%', display: 'flex', justifyContent: 'space-between', width: '100%', }}>
                             <Grid item md={3} sx={{ marginTop: '5%' }}>
-                                <h2 style={{ margin: '0', padding: '0' }}>{crea[id].followers}</h2>
+                                <h2 style={{ margin: '0', padding: '0' }}>{crea[id].followers.split(',').length}</h2>
                                 <p style={{ fontSize: '12px', color: '#D2D2D2', margin: '0', padding: '0' }}>Followers</p>
                             </Grid>
                             <Grid item md={3} sx={{ marginTop: '5%' }}>
-                                <h2 style={{ margin: '0', padding: '0' }}>{crea[id].followers}</h2>
-                                <p style={{ fontSize: '12px', color: '#D2D2D2', margin: '0', padding: '0' }}>Followers</p>
+                                <h2 style={{ margin: '0', padding: '0' }}>{crea[id].following.split(',').length}</h2>
+                                <p style={{ fontSize: '12px', color: '#D2D2D2', margin: '0', padding: '0' }}>Following</p>
                             </Grid>
                             <Grid item md={3} sx={{ marginTop: '5%' }}>
-                                <Button onClick={follow} sx={{ background: 'linear-gradient(301.4deg, #452E66 -102.56%, #EF60E5 111.8%)', borderRadius: '50px', color: 'white', padding: '10% 25%' }}>{JSON.parse(localStorage.getItem("lfuser")).is_client ? "Hire" : "Collaborate"}</Button>
+
+                                {
+
+                                    !JSON.parse(localStorage.getItem('lfuser')).followers.includes(crea[id].id) && followed &&
+                                    <Button onClick={follow} sx={{ background: 'linear-gradient(301.4deg, #452E66 -102.56%, #EF60E5 111.8%)', borderRadius: '50px', color: 'white', padding: '10% 25%' }}>{JSON.parse(localStorage.getItem("lfuser")).is_client ? "Hire" : "Collaborate"}</Button>
+                                }
                             </Grid>
                         </Grid>
                     </Grid>
                     <Card sx={{ width: '100%', height: '100%', borderRadius: '30px', padding: '5%' }}>
-                        <BasicTabs />
+                        <BasicTabs crea={crea} id={id} />
 
                     </Card>
                 </Box>

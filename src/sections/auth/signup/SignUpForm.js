@@ -43,6 +43,7 @@ export default function SignUpForm() {
   console.log(json)
 
   const handleClick = async () => {
+    setLoad(true)
     // await cometServices.signUp({ "uid": `${json.email.split('@')[0]}`, "name": `${json.name}`, "avatar": `${json.image}`, "Link": "", "role": "Default", "metadata": "None", "withAuthToken": true, "tags": [] })
     //   .then((res) => { console.log(res) })
     let authKey = COMETCHAT_CONSTANTS.AUTH_KEY;
@@ -62,6 +63,7 @@ export default function SignUpForm() {
       console.log(res.data.token, res.data.user)
       localStorage.setItem('token', res.data.token)
       localStorage.setItem('lfuser', JSON.stringify(res.data.user))
+      setLoad(false)
       navigate('/dashboard/app')
     })
   };
@@ -147,7 +149,7 @@ export default function SignUpForm() {
         </Link>
       </Stack> */}
 
-      {!load ? <LoadingButton onClick={handleClick} sx={{ backgroundColor: "#4060F3" }} fullWidth size="large" type="submit" variant="contained">
+      {!load ? <LoadingButton onClick={handleClick} sx={{ backgroundColor: "#D659D2" }} fullWidth size="large" type="submit" variant="contained">
         Sign Up
       </LoadingButton> : <Box sx={{ display: 'flex', justifyContent: 'center' }}>
         <CircularProgress sx={{ backgroundColor: '#4060F3', color: '#EDEDED', padding: '5px', borderRadius: '50%' }} />
