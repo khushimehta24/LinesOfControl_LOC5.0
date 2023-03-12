@@ -1,7 +1,7 @@
 from rest_framework import serializers
 from .models import *
 from accounts.models import *
-from accounts.serializers import *
+from accounts.serializers import UserSerializer, UserRegisterSerializer
 
 
 class FollowSerializer(serializers.ModelSerializer):
@@ -14,13 +14,13 @@ class FollowSerializer(serializers.ModelSerializer):
     def create(self, data, user):
         follow = Follow.objects.create(follower = user, main_user = data['main_user'])
         main_user = data['main_user']
-        main_user.followers +=1
+        main_user.followers += str(user.id) + ','
         main_user.engagement +=1
-        user.following +=1
+        user.following += str(main_user.id) + ','
         follow.save()
         main_user.save()
         user.save()
-        return follow
+        return main_user
 
 
 class FollowListSerializer(serializers.ModelSerializer):
@@ -45,7 +45,7 @@ class LikeSerializer(serializers.ModelSerializer):
         id = validated_data.pop('liked_profile')
         user2 = User.objects.get(id = id)
         like = Like.objects.create(liked_by = user, liked_to = user2)
-        user2.likes +=1
+        user2.likes += str(user.id)  +','
         user2.engagement +=1
         user2.save()
         return like, user2

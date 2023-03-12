@@ -58,7 +58,7 @@ class UserSerializer(serializers.ModelSerializer):
     uid = serializers.CharField(read_only=True)
     class Meta:
         model = User
-        fields = ['id', 'uid', 'name', 'email','phone_no', 'password', 'city', 'image', 'likes', 'followers', 'following', 'is_client', 'engagement', 'photos']
+        fields = ['id', 'uid', 'name', 'email','phone_no', 'password', 'city', 'image', 'likes', 'followers', 'following', 'is_client', 'engagement', 'photos']   
     # To update user
     def update(self,validated_data,instance):
         instance.name = validated_data['name'] 

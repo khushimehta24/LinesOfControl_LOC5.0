@@ -46,9 +46,9 @@ class User(AbstractUser):
     phone_no = models.CharField(max_length = 10, blank=True)
     city = models.CharField(max_length= 50, blank = True)
     image = models.URLField(max_length=200, blank=True)
-    likes = models.IntegerField(blank=True, default=0)
-    followers = models.IntegerField(blank=True, default=0)
-    following = models.IntegerField(blank=True, default=0)
+    likes = models.CharField(max_length = 200, blank=True)
+    followers = models.CharField(max_length = 200, blank=True)
+    following = models.CharField(max_length = 200, blank=True)
     engagement = models.IntegerField(blank=True, default=0)
     is_client = models.BooleanField(blank=True, default=False)
 

@@ -16,8 +16,9 @@ class FollowAPI(GenericAPIView):
         data = request.data
         serializer = self.serializer_class(data=data)
         serializer.is_valid(raise_exception = True)
-        follow = serializer.create(serializer.validated_data, user)
-        return Response({"response":"Success"}, status=status.HTTP_201_CREATED)
+        user2 = serializer.create(serializer.validated_data, user)
+        serializer2 = UserSerializer(user2)
+        return Response({"response":"Success", 'user':serializer2.data}, status=status.HTTP_201_CREATED)
 
 
 class FollowListAPI(ListAPIView):
